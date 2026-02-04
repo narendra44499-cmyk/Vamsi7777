@@ -2,9 +2,74 @@
 <html>
 <head>
   <title>Teen Patti Game</title>
+  <style>
+    body {
+      background: green;
+      color: white;
+      text-align: center;
+      font-family: Arial;
+    }
+    .card {
+      display: inline-block;
+      background: white;
+      color: black;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Teen Patti</h1>
-  <button onclick="alert('Game will start soon')">Play</button>
-</body>
-</html>
+
+<h1>Teen Patti Game</h1>
+<button onclick="deal()">Deal Cards</button>
+
+<div id="cards"></div>
+<h2 id="result"></h2>
+
+<script>
+const deck = [
+"A♠","2♠","3♠","4♠","5♠","6♠","7♠","8♠","9♠","10♠","J♠","Q♠","K♠",
+"A♥","2♥","3♥","4♥","5♥","6♥","7♥","8♥","9♥","10♥","J♥","Q♥","K♥",
+"A♦","2♦","3♦","4♦","5♦","6♦","7♦","8♦","9♦","10♦","J♦","Q♦","K♦",
+"A♣","2♣","3♣","4♣","5♣","6♣","7♣","8♣","9♣","10♣","J♣","Q♣","K♣"
+];
+
+function deal() {
+  let cards = [];
+  while(cards.length < 3) {
+    let c = deck[Math.floor(Math.random()*deck.length)];
+    if(!cards.includes(c)) cards.push(c);
+  }
+
+  document.getElementById("cards").innerHTML =
+    cards.map(c => `<div class="card">${c}</div>`).join("");
+
+  document.getElementById("result").innerText = checkHand(cards);
+}
+
+function checkHand(cards) {
+  let ranks = cards.map(c => c.slice(0,-1));
+  let suits = cards.map(c => c.slice(-1));
+
+  let map = {};
+  ranks.forEach(r => map[r] = (map[r]||0)+1);
+
+  let sameSuit = suits[0]==suits[1] && suits[1]==suits[2];
+
+  let values = ranks.map(r=>{
+    if(r=="A") return 14;
+    if(r=="K") return 13;
+    if(r=="Q") return 12;
+    if(r=="J") return 11;
+    return parseInt(r);
+  }).sort((a,b)=>a-b);
+
+  let sequence = (values[0]+1==values[1] && values[1]+1==values[2]) ||
+                 (values[0]==2
