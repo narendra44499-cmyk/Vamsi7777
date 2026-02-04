@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vamsi Teenpatti</title>
+  <title>Vamsi TeenPatti</title>
   <style>
     body {
       background: green;
-      text-align: center;
       color: white;
+      text-align: center;
       font-family: Arial;
     }
     .card {
@@ -17,7 +16,7 @@
       padding: 20px;
       margin: 10px;
       border-radius: 10px;
-      font-size: 20px;
+      font-size: 24px;
       width: 60px;
     }
     button {
@@ -28,30 +27,31 @@
 </head>
 <body>
 
-<h1>Vamsi Teenpatti</h1>
-<button onclick="dealCards()">Deal Cards</button>
+  <h1>Vamsi TeenPatti</h1>
+  <button onclick="dealCards()">Deal Cards</button>
 
-<div id="cards"></div>
+  <div id="cards"></div>
 
-<script>
-  const deck = ["A♠","2♠","3♠","4♠","5♠","6♠","7♠","8♠","9♠","10♠","J♠","Q♠","K♠",
-                "A♥","2♥","3♥","4♥","5♥","6♥","7♥","8♥","9♥","10♥","J♥","Q♥","K♥",
-                "A♦","2♦","3♦","4♦","5♦","6♦","7♦","8♦","9♦","10♦","J♦","Q♦","K♦",
-                "A♣","2♣","3♣","4♣","5♣","6♣","7♣","8♣","9♣","10♣","J♣","Q♣","K♣"];
+  <script>
+    const deck = [
+      "A♠","2♠","3♠","4♠","5♠","6♠","7♠","8♠","9♠","10♠","J♠","Q♠","K♠",
+      "A♥","2♥","3♥","4♥","5♥","6♥","7♥","8♥","9♥","10♥","J♥","Q♥","K♥",
+      "A♦","2♦","3♦","4♦","5♦","6♦","7♦","8♦","9♦","10♦","J♦","Q♦","K♦",
+      "A♣","2♣","3♣","4♣","5♣","6♣","7♣","8♣","9♣","10♣","J♣","Q♣","K♣"
+    ];
 
-  function dealCards() {
-    let shuffled = deck.sort(() => 0.5 - Math.random());
-    let cardsDiv = document.getElementById("cards");
-    cardsDiv.innerHTML = "";
+    function dealCards() {
+      let shuffled = deck.sort(() => 0.5 - Math.random());
+      let hand = shuffled.slice(0,3);
 
-    for (let i = 0; i < 3; i++) {
-      let card = document.createElement("div");
-      card.className = "card";
-      card.innerText = shuffled[i];
-      cardsDiv.appendChild(card);
+      let output = "";
+      hand.forEach(card => {
+        output += `<div class="card">${card}</div>`;
+      });
+
+      document.getElementById("cards").innerHTML = output;
     }
-  }
-</script>
+  </script>
 
 </body>
 </html>
