@@ -1,87 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vamsi Teen Patti</title>
-  <style>
-    body {
-      background: darkgreen;
-      text-align: center;
-      color: white;
-      font-family: Arial;
-    }
+<title>Teen Patti Casino Animation</title>
+<style>
+body{
+  background: green;
+  text-align: center;
+  color: white;
+  font-family: Arial;
+}
 
-    #table {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      margin-top: 30px;
-    }
+#table{
+  margin-top: 50px;
+  position: relative;
+}
 
-    #dealer {
-      width: 120px;
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+.card{
+  width: 80px;
+  height: 120px;
+  background: white;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 10px;
+  line-height: 120px;
+  font-size: 30px;
+  color: black;
+}
 
-    #deck {
-      width: 80px;
-      position: absolute;
-      top: 200px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .card {
-      width: 60px;
-      position: absolute;
-      top: 200px;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: all 1s ease-in-out;
-    }
-
-    #card1 { }
-    #card2 { }
-    #card3 { }
-
-    button {
-      padding: 10px 20px;
-      font-size: 18px;
-      margin-top: 20px;
-    }
-  </style>
+#dealer{
+  margin-top: 30px;
+  font-size: 20px;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Vamsi Teen Patti</h1>
+<h1>Teen Patti Casino</h1>
+
+<div id="dealer">👩 Dealer is dealing cards...</div>
 
 <div id="table">
-  <!-- Girl Dealer Image -->
-  <img id="dealer" src="https://i.ibb.co/7b0YkYy/dealer.png">
-
-  <!-- Deck Image -->
-  <img id="deck" src="https://i.ibb.co/4Jm8qJk/cardback.png">
-
-  <!-- Cards -->
-  <img id="card1" class="card" src="https://i.ibb.co/4Jm8qJk/cardback.png">
-  <img id="card2" class="card" src="https://i.ibb.co/4Jm8qJk/cardback.png">
-  <img id="card3" class="card" src="https://i.ibb.co/4Jm8qJk/cardback.png">
+  <div id="card1" class="card"></div>
+  <div id="card2" class="card"></div>
+  <div id="card3" class="card"></div>
 </div>
 
-<button onclick="deal()">Deal Cards</button>
+<br>
+<button onclick="dealCards()">Deal Cards</button>
 
 <script>
-function deal() {
-  document.getElementById("card1").style.left = "30%";
-  document.getElementById("card1").style.top = "300px";
+let cards = ["A♠","K♦","Q♥","J♣","10♠","9♦","8♥","7♣"];
 
-  document.getElementById("card2").style.left = "50%";
-  document.getElementById("card2").style.top = "320px";
+function dealCards(){
+  document.getElementById("card1").innerHTML = "🂠";
+  document.getElementById("card2").innerHTML = "🂠";
+  document.getElementById("card3").innerHTML = "🂠";
 
-  document.getElementById("card3").style.left = "70%";
-  document.getElementById("card3").style.top = "300px";
+  setTimeout(()=>{ document.getElementById("card1").innerHTML = cards[Math.floor(Math.random()*cards.length)]; },1000);
+  setTimeout(()=>{ document.getElementById("card2").innerHTML = cards[Math.floor(Math.random()*cards.length)]; },2000);
+  setTimeout(()=>{ document.getElementById("card3").innerHTML = cards[Math.floor(Math.random()*cards.length)]; },3000);
 }
 </script>
 
